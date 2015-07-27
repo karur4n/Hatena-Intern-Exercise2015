@@ -37,11 +37,4 @@ function parseLTSVLog(logStr) {
   return results;
 }
 
-var logStr =
-    "path:/\tepoch:200000\n" +
-    "path:/help\tepoch:300000\n" +
-    "path:/\tepoch:250000\n";
-
-parseLTSVLog(logStr);
-
 // 課題 JS-2: 関数 `createLogTable` を記述してください
