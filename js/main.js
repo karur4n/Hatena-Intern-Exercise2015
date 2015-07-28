@@ -4,7 +4,6 @@ function parseLTSVLog(logStr) {
   var results = [];
   var labels = ["path", "epoch"];
 
-
   // 空白の要素を削除する
   for (var i = 0; i < logs.length; i++) {
     if (logs[i] == "") {
