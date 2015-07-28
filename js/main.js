@@ -3,10 +3,11 @@ function parseLTSVLog(logStr) {
   var logs = logStr.split("\n");
   var results = [];
   var labels = ["path", "epoch"];
+  var i;
 
   // 空白の要素を削除する
-  for (var i = 0; i < logs.length; i++) {
-    if (logs[i] == "") {
+  for (i = 0; i < logs.length; i++) {
+    if (logs[i] === "") {
       logs.splice(i, 1);
     }
   }
@@ -15,7 +16,7 @@ function parseLTSVLog(logStr) {
     var logUnits = logLine.split("\t");
     var resultTmp = {};
 
-    for (var i=0; i < logUnits.length; i++) {
+    for (i = 0; i < logUnits.length; i++) {
       var tmp = logUnits[i].split(":");
       var key = tmp[0];
       var value = tmp[1];
@@ -27,7 +28,7 @@ function parseLTSVLog(logStr) {
 
     // epoch の値を Int 型にする
     if ("epoch" in resultTmp) {
-      resultTmp["epoch"] = parseInt(resultTmp["epoch"]);
+      resultTmp.epoch = parseInt(resultTmp.epoch);
     }
 
     results.push(resultTmp);
