@@ -39,4 +39,28 @@ sub time {
   return $dt;
 }
 
+sub to_hash {
+  my $self = shift;
+  my %hash;
+  for (qw/status size user referer/) {
+    $hash{$_} = $self->{$_} if $self->{$_};
+  }
+
+  $hash{'time'} = $self->time;
+  $hash{'method'} = $self->method;
+  $hash{'uri'} = $self->uri;
+
+  return \%hash;
+
+  # return {
+    # 'status'  => $self->{status},
+    # 'time'    => $self->time,
+    # 'size'    => $self->{size},
+    # 'uri'     => $self->uri,
+    # 'user'    => $self->{user},
+    # 'method'  => $self->method,
+    # 'referer' => $self->{referer}
+  # };
+}
+
 1;
