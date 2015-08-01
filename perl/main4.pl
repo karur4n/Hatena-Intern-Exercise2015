@@ -33,6 +33,7 @@ for my $key (sort keys %result) {
   print "\n";
 
   for (sort keys %{$result{$key}}) {
+    # ドメインが 127.0.0.1 の場合
     my $path = substr($_, 16);
     printf("%16s: ", $path);
     for ($i = 0; $i < $result{$key}->{$_}; $i++) {
