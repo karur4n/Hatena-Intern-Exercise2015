@@ -43,6 +43,8 @@ function createLogTable(containerNode, logObjs) {
   var tbodyNode = document.createElement("tbody");
   var trNode, logKey;
 
+  deleteChild(containerNode);
+
   // thead 部の生成
 
   trNode = document.createElement("tr");
@@ -71,4 +73,10 @@ function createLogTable(containerNode, logObjs) {
   tableNode.appendChild(tbodyNode);
 
   containerNode.appendChild(tableNode);
+}
+
+function deleteChild(element) {
+  while(element.firstChild){
+  	element.removeChild(element.firstChild);
+  }
 }
