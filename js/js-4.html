@@ -496,10 +496,14 @@ host:127.0.0.1&#x0009;user:frank&#x0009;epoch:1436176013&#x0009;req:GET /profile
        </textarea>
       <div><input value="表に出力する" type="button" id="submit-button" /></div>
       <div>
-        <h3>検索</h3>
+        <h3>抽出</h3>
+        <label>user:</label>
+        <input type="text" id="userQuery" value="frank"></input><br>
         <label>path:</label>
-        <input type="text" id="filterQuery" value="/"></input>
-        <input type="button" id="search-button" value="検索"></input>
+        <input type="text" id="pathQuery" value="/fotolife"></input><br>
+        <label>status:</label>
+        <input type="text" id="statusQuery" value="200"></input><br>
+        <input type="button" id="search-button" value="抽出"></input>
       </div>
     </div>
     <div id="table-container"></div>

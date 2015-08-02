@@ -4,21 +4,51 @@ var i;
 
 searchButton.addEventListener('click', function() {
   var input_logs = document.getElementById('log-input').value;
-  var filterQuery = document.getElementById('filterQuery').value;
-  var parsed_logs = parseLTSVLog(input_logs);
-  var extract_logs = filterLogsByPath(filterQuery, parsed_logs);
 
-  createLogTable(container, extract_logs);
+  var userQueryValue = document.getElementById('userQuery').value;
+  var pathQueryValue = document.getElementById('pathQuery').value;
+  var statusQueryValue = document.getElementById('statusQuery').value;
+
+  var queryHash = {
+    'user': userQueryValue,
+    'path': pathQueryValue,
+    'status': statusQueryValue
+  };
+
+  var parsedLogs = parseLTSVLog(input_logs);
+
+  for (key in queryHash) {
+    if (!(queryHash[key] === "")) {
+      parsedLogs = filterLogs(key, queryHash[key], parsedLogs);
+    }
+  }
+
+  createLogTable(container, parsedLogs);
 });
 
-function filterLogsByPath(query, logs) {
+function filterLogs(queryType, queryValue, logs) {
   var result = [];
 
   for (i = 0; i < logs.length; i++) {
-    var path = logs[i].req.split(" ")[1];
-    console.log(path);
-    if (query === path) {
-      result.push(logs[i]);
+    switch (queryType) {
+      case 'user':
+        var user = logs[i].user;
+        if (queryValue === user) {
+          result.push(logs[i]);
+        }
+        break;
+      case 'path':
+        var path = logs[i].req.split(" ")[1];
+        if (queryValue === path) {
+          result.push(logs[i]);
+        }
+        break;
+      case 'status':
+        var status = logs[i].status;
+        if (queryValue === status) {
+          result.push(logs[i]);
+        }
+        break;
     }
   }
 
