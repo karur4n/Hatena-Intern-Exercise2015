@@ -7,7 +7,7 @@ function parseLTSVLog(logStr) {
 
   // 空白の要素を削除する
   for (i = 0; i < logs.length; i++) {
-    if (logs[i] === "") {
+    if (logs[i].match(/(^\s+$|^$)/)) {
       logs.splice(i, 1);
     }
   }
@@ -21,9 +21,7 @@ function parseLTSVLog(logStr) {
       var key = tmp[0];
       var value = tmp[1];
 
-      if (labels.indexOf(key) >= 0) {
-        resultTmp[key] = value;
-      }
+      resultTmp[key] = value;
     }
 
     // epoch の値を Int 型にする
